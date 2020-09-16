@@ -14,6 +14,7 @@ import firebase from 'firebase'
     firebase.initializeApp(firebaseConfig);
 
 
+
 mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
 
 const configuration = {
