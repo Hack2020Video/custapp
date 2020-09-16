@@ -5,6 +5,7 @@
   "dependencies": {
     "@firebase/app": "^0.6.11",
     "firebase": "^7.20.0",
-    "firestore": "^1.1.6"
+    "firestore": "^1.1.6",
+    "material-components-web": "^7.0.0"
   }
 }
