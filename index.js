@@ -82,8 +82,11 @@ async function createRoom() {
       type: offer.type,
       sdp: offer.sdp,
     },
+    'status': 'waiting'
   };
-  await roomRef.set(roomWithOffer);
+ await roomRef.set(roomWithOffer);
+
+
   roomId = roomRef.id;
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
   // document.querySelector(
