@@ -91,12 +91,12 @@ async function createRoom() {
 
   roomId = roomRef.id;
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
-    //Logging waiting Calls
-      const waitingCalls = {
-    'status': 'waiting'
-    };
-    db.collection('waitingRooms').doc(roomId).set(waitingCalls);
 
+  //Adding to waiting Calls List
+  const waitingCalls = {
+  'status': 'waiting'
+  };
+  db.collection('waitingRooms').doc(roomId).set(waitingCalls);
 
   // document.querySelector(
   //     '#currentRoom').innerText = `Current room is ${roomRef.id} - You are the caller!`;
@@ -278,12 +278,7 @@ async function openUserMedia(e) {
     
     await roomRef.delete();
 
-    //Logging Disconnected Calls
-    const disConnectedCalls = {
-    'status': 'disconnecteed'
-    };
-    db.collection('disConnectedCalls').doc(roomId).set(disConnectedCalls);
-    //Deleting Waiting room
+    //Deleting Waiting room on hangup
     db.collection('waitingRooms').doc(roomId).delete();
 
   }
