@@ -89,9 +89,15 @@ async function createRoom() {
   };
  await roomRef.set(roomWithOffer);
 
-
   roomId = roomRef.id;
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
+    //Logging waiting Calls
+      const waitingCalls = {
+    'status': 'waiting'
+    };
+    db.collection('waitingRooms').doc(roomId).set(waitingCalls);
+
+
   // document.querySelector(
   //     '#currentRoom').innerText = `Current room is ${roomRef.id} - You are the caller!`;
   // Code for creating a room above
@@ -269,7 +275,17 @@ async function openUserMedia(e) {
     callerCandidates.forEach(async candidate => {
       await candidate.ref.delete();
     });
+    
     await roomRef.delete();
+
+    //Logging Disconnected Calls
+    const disConnectedCalls = {
+    'status': 'disconnecteed'
+    };
+    db.collection('disConnectedCalls').doc(roomId).set(disConnectedCalls);
+    //Deleting Waiting room
+    db.collection('waitingRooms').doc(roomId).delete();
+
   }
 
   document.location.reload(true);
