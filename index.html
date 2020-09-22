@@ -6,7 +6,7 @@
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
 </head>
 <body>
 <h1>Welcome to CustomerApp!</h1>
@@ -32,8 +32,8 @@
     <span id="currentRoom"></span>
 </div>
 <div id="videos">
-    <video id="localVideo" muted autoplay playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
+    <video class='userVideo' id="localVideo" muted autoplay playsinline></video>
+    <video class='peerVideo overlay' id="remoteVideo" autoplay playsinline></video>
 </div>
 <div class="mdc-dialog"
      id="room-dialog"

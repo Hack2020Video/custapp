@@ -1,3 +1,5 @@
+import './main.css';
+
 import firebase from 'firebase'
     var firebaseConfig = {
       "projectId": "huntington-video-349d9",
@@ -41,6 +43,7 @@ function init() {
   document.querySelector('#createBtn').addEventListener('click',createRoom);
   // document.querySelector('#joinBtn').addEventListener('click', joinRoom);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector('#room-dialog'));
+  // const db = Firebase.firestore();
 }
 
 async function createRoom() {
@@ -122,9 +125,20 @@ async function createRoom() {
       }
     });
   });
+
+  
+  // Listen for Room removal
+  db.collection('rooms').onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(async change => {
+      if (change.type === 'removed' && roomId === change.doc.id ){
+        console.log('hang up');
+             hangUp();
+
+      }
+    });
+  });
   // Listen for remote ICE candidates above
 }
-
 // function joinRoom() {
 //   document.querySelector('#createBtn').disabled = true;
 //   document.querySelector('#joinBtn').disabled = true;
@@ -220,7 +234,8 @@ async function openUserMedia(e) {
   document.querySelector('#hangupBtn').disabled = false;
 }
 
-async function hangUp(e) {
+// async function hangUp(e) {
+  async function hangUp() {
   const tracks = document.querySelector('#localVideo').srcObject.getTracks();
   tracks.forEach(track => {
     track.stop();

@@ -75,7 +75,7 @@ button {
     margin: 0.2em 0.1em;
 }
 
-div#videos {
+/* div#videos {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -87,4 +87,30 @@ div#videos > video {
     height: 100%;
     display: block;
     margin: 1em;
+}  */
+
+div#videos > video#localVideo {
+    height: 50px;
+    width: 50px;
+    float: left;
+    /* border:5px solid orange; */
+    position: relative; 
+    z-index: 1;
 }
+
+.peerVideo {
+    height: 200px;
+    width: 200px;
+    /* border:5px solid blue; */
+    position: absolute;
+}
+
+ .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 20;
+    /* background: rgba(51,51,51,0.7); */
+    z-index: 10;
+  }
