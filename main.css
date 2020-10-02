@@ -14,12 +14,12 @@ body {
     border-radius: 3px;
 }
 
-#message h2 {
-    color: #ffa100;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 0 0 8px;
-}
+ #message h2 {
+     color: #ffa100;
+     font-weight: bold;
+     font-size: 16px;
+     margin: 0 0 8px; 
+ }
 
 #message h1 {
     font-size: 22px;
@@ -62,9 +62,9 @@ body {
         box-shadow: none;
     }
 
-    body {
-        border-top: 16px solid #ffa100;
-    }
+    /* body { */
+        /* border-top: 16px solid #ffa100; */
+    /* } */
 }
 
 body {
