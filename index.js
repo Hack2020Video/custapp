@@ -93,7 +93,6 @@ async function createRoom() {
   };
   db.collection('waitingRooms').doc(roomId).set(waitingCalls);
 
-  
   // Code for creating a room above
 
   peerConnection.addEventListener('track', event => {
