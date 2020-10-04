@@ -41,6 +41,8 @@ function init() {
   document.querySelector('#hangupBtn').addEventListener('click', hangUp);
   document.querySelector('#createBtn').addEventListener('click',createRoom);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector('#room-dialog'));
+  document.querySelector('#chatWindow').style.visibility = 'hidden';
+  document.querySelector('#sendChatButton').addEventListener('click', sendChat);
  
 }
 
@@ -86,12 +88,16 @@ async function createRoom() {
 
   roomId = roomRef.id;
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
+ 
 
   //Adding to waiting Calls List
   const waitingCalls = {
   'status': 'waiting'
   };
-  db.collection('waitingRooms').doc(roomId).set(waitingCalls);
+  await db.collection('waitingRooms').doc(roomId).set(waitingCalls);
+   listenChat();
+  //Display Chat Window
+  document.querySelector('#chatWindow').style.visibility = 'visible';
 
   // Code for creating a room above
 
@@ -136,9 +142,7 @@ async function createRoom() {
       }
     });
   });
-  // Listen for remote ICE candidates above
-
-  
+  // Listen for remote ICE candidates above  
 
 }
 
@@ -218,6 +222,33 @@ function registerPeerConnectionListeners() {
     console.log(
         `ICE connection state change: ${peerConnection.iceConnectionState}`);
   });
+}
+
+  async function sendChat(){
+  const db = firebase.firestore();
+  //Sending New Mesage
+  const message = {
+  'message': "Customer:   "+document.getElementById("chatText").value
+  };
+  const newChatRef =  db.collection('chats').doc(roomId).collection('messages').doc();
+  await newChatRef.set(message);
+  document.getElementById("chatText").value="";
+}
+
+async function listenChat(){
+  const db = firebase.firestore();
+  db.collection('chats').doc(roomId).collection('messages').onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(async change => {
+        if (change.type === 'added') {
+          let data = change.doc.data();
+          var element = document.createElement("P");
+          element.innerText =data.message;
+          var parentobj = document.getElementById("chatMessages");
+          //Append the element in page (in span).  
+          parentobj.appendChild(element);
+        }
+        });
+    });
 }
 
 init();
