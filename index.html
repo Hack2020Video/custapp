@@ -36,8 +36,9 @@ h1 {
         <span id="currentRoom"></span>
     </div>
     <div id="videos">
-        <video class='userVideo' id="localVideo" muted autoplay playsinline></video>
-        <video class='peerVideo overlay' id="remoteVideo" autoplay playsinline></video>
+        <video class='userVideo' id="localVideo" muted autoplay playsinline 
+        style="position:absolute; vertical-align:top"></video>
+        <video class='peerVideo overlay' id="remoteVideo" autoplay playsinline style="position:absolute; border-radius:35%; width:150px;"></video>
     </div>
     <div class="mdc-dialog"
         id="room-dialog"
