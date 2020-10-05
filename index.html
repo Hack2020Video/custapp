@@ -17,8 +17,27 @@ h1 {
 </style>
 </head>
 <body >
+        <table width="100%" height="100%">
+         <tr >
+            <td>
+               <table>
+                  <tr>
+                     <td width=47%>
   <img src="https://www.huntington.com/-/media/hcom/global/logo/lockup.svg?rev=c9cf80c581284a5884ce918b9c672733&amp;h=81&amp;w=273&amp;la=en&amp;hash=CBB13816C82E9D808DD73BE863AAE7CC" height="81" width="273" alt="Huntington, Welcome">
+</td>
+                  </tr>
+                     <td style="text-align:right">
 <h1 style="color: white;">Welcome to Huntington Video</h1>
+</td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <tr style="width:100%; ">
+<td >
+               <table >
+                  <tr>
+                     <td>
 <div id="buttons">
     <button class="mdc-button mdc-button--raised"  id="createBtn">
         <i class="material-icons mdc-button__icon " aria-hidden="true">video_call</i>
@@ -30,14 +49,20 @@ h1 {
         <span class="mdc-button__label">Hangup</span>
     </button>
 </div>
-<table width="100%" height="100%">
+                     </td> 
+                  </tr>
+               </table>
+
+</td>
+         </tr>
+<table width="100%">
   <td>
     <div>
         <span id="currentRoom"></span>
     </div>
     <div id="videos">
-        <video class='userVideo' id="localVideo" muted autoplay playsinline ></video>
-        <video class='peerVideo overlay' id="remoteVideo" autoplay playsinline></video>
+        <video class='userVideo' id="localVideo" muted autoplay playsinline style="position:absolute; border-radius:35%; width:150px;"></video>
+        <video class='peerVideo overlay' id="remoteVideo" autoplay playsinline ></video>
     </div>
     <div class="mdc-dialog"
         id="room-dialog"
